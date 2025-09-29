@@ -1,8 +1,8 @@
 <template>
   <main>
-    <h1>Hello World</h1>
-    <button>Click Me</button>
-    <pre>{{ treeChecklist }}</pre>
+    <div style="width: 275px">
+      <CheckboxWrapper :treeChecklist="treeChecklist" />
+    </div>
   </main>
 </template>
 
@@ -10,6 +10,7 @@
 import { useChecklist } from '@/composable/useChecklist'
 import { useChecklistBuilder } from '@/composable/useChecklistBuilder'
 import type { ITreeCheckList, Folder, Item } from '@/composable/useChecklistBuilder'
+import CheckboxWrapper from '@/components/CheckboxWrapper.vue'
 
 import { onMounted, ref } from 'vue'
 
