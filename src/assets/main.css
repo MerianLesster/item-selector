@@ -9,7 +9,7 @@
 
 button {
   background-color: var(--color-primary);
-  color: white;
+  color: var(--color-surface);
   border: none;
   padding: 8px 16px;
   border-radius: var(--border-radius);
