@@ -2,7 +2,12 @@
   <div>
     <div class="checkbox-wrapper">
       <div class="checkbox">
-        <input type="checkbox" :id="`checkbox-${title}-${id}`" v-model="isChecked" />
+        <input
+          type="checkbox"
+          :id="`checkbox-${title}-${id}`"
+          v-model="isChecked"
+          :indeterminate="isIndeterminate"
+        />
         <label
           :for="`checkbox-${title}-${id}`"
           :style="{ cursor: 'pointer', fontWeight: isFolder ? 'bold' : 'normal' }"
@@ -40,7 +45,7 @@
 
 <script setup lang="ts">
 import type { ITreeCheckList } from '@/composable/useChecklistBuilder'
-import { ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 
 const { children } = defineProps<{
   id: number
@@ -50,6 +55,10 @@ const { children } = defineProps<{
 }>()
 const isChecked = defineModel<boolean>({ required: true })
 const isCollapsed = ref(false)
+
+const isIndeterminate = computed(() => {
+  return isAnyChildSelected(children) && !isChecked.value
+})
 
 watch(isChecked, (newVal) => {
   // set all children to the same checked state
@@ -62,6 +71,18 @@ const setChildrenChecked = (children: ITreeCheckList[], checked: boolean) => {
     if (child.children && child.children.length > 0) {
       setChildrenChecked(child.children, checked)
     }
+  })
+}
+
+const isAnyChildSelected = (children: ITreeCheckList[]): boolean => {
+  return children.some((child) => {
+    if (child.isChecked) {
+      return true
+    }
+    if (child.children && child.children.length > 0) {
+      return isAnyChildSelected(child.children)
+    }
+    return false
   })
 }
 </script>
