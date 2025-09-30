@@ -1,6 +1,6 @@
 <template>
   <main>
-    <div style="width: 275px">
+    <div class="item-selector">
       <CheckboxWrapper :treeChecklist="treeChecklist" />
     </div>
   </main>
@@ -45,4 +45,10 @@ onMounted(async () => {
 })
 </script>
 
-<style scoped></style>
+<style scoped>
+.item-selector {
+  width: 275px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+}
+</style>
