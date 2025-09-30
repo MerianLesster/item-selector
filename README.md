@@ -1,6 +1,9 @@
 # item-selector
 
-This template should help get you started developing with Vue 3 in Vite.
+This vue project showcases an `interactive item selector with folder structure` that was developed without the use of any component and css libraries.
+
+<img width="445" height="670" alt="image" src="https://github.com/user-attachments/assets/e125e17d-5f41-49e6-81da-a769639b0b5e" />
+
 
 ## Recommended IDE Setup
 
