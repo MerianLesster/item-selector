@@ -49,6 +49,9 @@ export const useChecklistBuilder = () => {
       const parent = item.folderId !== null ? folderMap.get(item.folderId) : undefined
       if (parent) {
         parent.children.push(itemNode)
+        parent.children.sort((a, b) => {
+          return a.title.localeCompare(b.title)
+        })
       }
     })
 
