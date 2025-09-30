@@ -39,15 +39,31 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import type { ITreeCheckList } from '@/composable/useChecklistBuilder'
+import { ref, watch } from 'vue'
 
-defineProps<{
+const { children } = defineProps<{
   id: number
   title: string
   isFolder: boolean
+  children: ITreeCheckList[]
 }>()
 const isChecked = defineModel<boolean>({ required: true })
 const isCollapsed = ref(false)
+
+watch(isChecked, (newVal) => {
+  // set all children to the same checked state
+  setChildrenChecked(children, newVal)
+})
+
+const setChildrenChecked = (children: ITreeCheckList[], checked: boolean) => {
+  children.forEach((child) => {
+    child.isChecked = checked
+    if (child.children && child.children.length > 0) {
+      setChildrenChecked(child.children, checked)
+    }
+  })
+}
 </script>
 
 <style scoped>

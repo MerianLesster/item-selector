@@ -5,6 +5,7 @@
         :id="checkbox.id"
         :title="checkbox.title"
         :isFolder="checkbox.type === 'folder'"
+        :children="checkbox.children"
         v-model="checkbox.isChecked"
       >
         <template v-if="checkbox.children">
