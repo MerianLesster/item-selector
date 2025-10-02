@@ -55,6 +55,3 @@ npm run build
 ```sh
 npm run lint
 ```
-
-Thank you very much for giving me the opportunity to do this fun assignment.
-I have completed all the requirements but I found minor bugs
